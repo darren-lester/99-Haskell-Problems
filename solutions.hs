@@ -1,5 +1,4 @@
 -- Problem 1 Find the last element of a list.
-
 -- using recursion
 last' :: [a] -> a
 last' [] = error "last': empty list"
@@ -19,7 +18,8 @@ secondLast (x:xs)
  | length (x:xs) == 2 = x
  | otherwise = secondLast xs
 
--- Problem 3 Find the K'th element of a list. The first element in the list is number 1.
+-- Problem 3 Find the K'th element of a list. The first element in the list is
+-- number 1.
 elementAt :: [a] -> Int -> a
 elementAt [] _ = error "elementAt: empty list"
 elementAt _ 0 = error "elementAt: 0 index"
@@ -31,7 +31,6 @@ length' [] = 0
 length' (x:xs) = 1 + length' xs
 
 -- Problem 5 Reverse a list.
-
 -- with left fold
 reverse' :: [a] -> [a]
 reverse' [] = []
@@ -56,13 +55,16 @@ flatten (List []) = []
 flatten (List (x:xs)) = flatten x ++ flatten (List xs)
 
 -- Problem 8 Eliminate consecutive duplicates of list elements.
-
 compress :: Eq a => [a] -> [a]
 compress [] = []
 compress [x] = [x]
-compress (x:xs) = foldl (\acc -> \elt -> (if elt == last' acc then acc else acc ++ [elt])) [x] xs
+compress (x:xs) = foldl (\acc -> \elt -> (if elt == last' acc
+                                          then acc
+                                          else acc ++ [elt])) [x] xs
 
--- Problem 9 Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+-- Problem 9 Pack consecutive duplicates of list elements into sublists.
+-- If a list contains repeated elements they should be placed in separate
+-- sublists.
 pack :: Eq a => [a] -> [[a]]
 pack [] = []
 pack xs = let group = takeWhile (== head xs) xs
