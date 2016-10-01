@@ -78,3 +78,14 @@ pack xs = let group = takeWhile (== head xs) xs
 encode :: Eq a => [a] -> [(Int, a)]
 encode [] = []
 encode xs = map (\x -> (length x, head x)) $ pack xs
+
+-- Problem 11 Modified run-length encoding.
+-- Modify the result of problem 10 in such a way that if an element has no
+-- duplicates it is simply copied into the result list. Only elements with
+-- duplicates are transferred as (N E) lists.
+data ListElem a = Single a | Multiple Int a deriving Show
+
+encodeModified :: Eq a => [a] -> [ListElem a]
+encodeModified xs = map (\x -> if (fst x) == 1
+                               then Single (snd x)
+                               else Multiple (fst x) (snd x)) (encode xs)
