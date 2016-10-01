@@ -98,3 +98,15 @@ decodeModified :: [ListElem a] -> [a]
 decodeModified [] = []
 decodeModified ((Single x):xs) = x:(decodeModified xs)
 decodeModified ((Multiple n x):xs) = replicate n x ++ decodeModified xs
+
+-- Problem 13 Run-length encoding of a list (direct solution).
+-- Implement the so-called run-length encoding data compression method directly.
+-- I.e. don't explicitly create the sublists containing the duplicates, as in
+-- problem 9, but only count them. As in problem P11, simplify the result list
+-- by replacing the singleton lists (1 X) by X.
+encodeDirect :: Eq a => [a] -> [ListElem a]
+encodeDirect [] = []
+encodeDirect (x:xs)
+ | xCount == 1 = (Single x) : (encodeDirect xs)
+ | otherwise = (Multiple xCount x) : encodeDirect (drop (xCount - 1) xs)
+ where xCount = 1 + length (takeWhile (== x) xs)
