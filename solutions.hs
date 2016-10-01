@@ -89,3 +89,12 @@ encodeModified :: Eq a => [a] -> [ListElem a]
 encodeModified xs = map (\x -> if (fst x) == 1
                                then Single (snd x)
                                else Multiple (fst x) (snd x)) (encode xs)
+
+-- Problem 12 Decode a run-length encoded list.
+-- Given a run-length code list generated as specified in problem 11.
+-- Construct its uncompressed version.
+
+decodeModified :: [ListElem a] -> [a]
+decodeModified [] = []
+decodeModified ((Single x):xs) = x:(decodeModified xs)
+decodeModified ((Multiple n x):xs) = replicate n x ++ decodeModified xs
