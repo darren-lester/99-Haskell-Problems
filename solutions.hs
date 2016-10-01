@@ -54,3 +54,10 @@ flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List []) = []
 flatten (List (x:xs)) = flatten x ++ flatten (List xs)
+
+-- Problem 8 Eliminate consecutive duplicates of list elements.
+
+compress :: Eq a => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x:xs) = foldl (\acc -> \elt -> (if elt == last' acc then acc else acc ++ [elt])) [x] xs
