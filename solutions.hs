@@ -110,3 +110,8 @@ encodeDirect (x:xs)
  | xCount == 1 = (Single x) : (encodeDirect xs)
  | otherwise = (Multiple xCount x) : encodeDirect (drop (xCount - 1) xs)
  where xCount = 1 + length (takeWhile (== x) xs)
+
+-- Problem 14 Duplicate the elements of a list.
+duplicate :: [a] -> [a]
+duplicate [] = []
+duplicate (x:xs) = x:x:(duplicate xs)
