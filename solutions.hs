@@ -120,3 +120,9 @@ duplicate (x:xs) = x:x:(duplicate xs)
 repli :: [a] -> Int -> [a]
 repli [] _ = []
 repli (x:xs) n = (replicate n x) ++ (repli xs n)
+
+-- Problem 16 Drop every N'th element from a list.
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] _ = []
+dropEvery xs 1 = []
+dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
