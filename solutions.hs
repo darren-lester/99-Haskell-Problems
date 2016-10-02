@@ -200,3 +200,8 @@ diffSelect n limit
    do
    g <- newStdGen
    return $ take n (nub [ x | x <- randomRs (1, limit) g])
+
+-- Problem 31 Determine whether a given integer number is prime.
+isPrime :: Int -> Bool
+isPrime 0 = False
+isPrime x = not $ True `elem` [ x `mod` y == 0 | y <- [2..(x - 1)]]
