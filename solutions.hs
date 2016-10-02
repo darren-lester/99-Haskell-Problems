@@ -164,3 +164,11 @@ removeAt i xs
  | i < 1 = error "removeAt: index less than 1"
  | i > length xs = error "removeAt: index greater than list length"
  | otherwise = (xs !! (i - 1), (take (i - 1) xs) ++ drop i xs)
+
+-- Problem 21 Insert an element at a given position into a list.
+insertAt :: a -> [a] -> Int -> [a]
+insertAt x [] _ = [x]
+insertAt x xs i
+ | i < 1 = error "insertAt: index less than 1"
+ | otherwise = take (i - 1) xs ++ [x] ++ drop (i - 1) xs
+ 
