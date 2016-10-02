@@ -135,3 +135,15 @@ split [] _ = ([], [])
 split xs n = foldl (\acc -> \elt -> if length (fst acc) < n
                                     then (fst acc ++ [elt], snd acc)
                                     else (fst acc, snd acc ++ [elt])) ([], []) xs
+
+-- Problem 18 Extract a slice from a list.
+-- Given two indices, i and k, the slice is the list
+-- containing the elements between the i'th and k'th
+-- element of the original list (both limits included).
+-- Start counting the elements with 1
+slice :: [a] -> Int -> Int -> [a]
+slice [] _ _ = []
+slice xs i k
+ | i <= 0 = error "slice: start index less than 1"
+ | otherwise = take (k - i + 1) $ drop (i - 1) xs
+ 
