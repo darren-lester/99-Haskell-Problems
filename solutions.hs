@@ -1,3 +1,5 @@
+import System.Random
+import Data.List
 -- Problem 1 Find the last element of a list.
 -- using recursion
 last' :: [a] -> a
@@ -179,3 +181,11 @@ range i j
  | i == j = [i]
  | otherwise = i : range (i + 1) j
 
+-- Problem 23 Extract a given number of randomly selected elements from a list.
+randomSelect :: Eq a => [a] -> Int -> IO [a]
+randomSelect [] _ = error "randomSelect: empty list"
+randomSelect xs n
+ | n == (length xs) = do return xs
+ | otherwise = do
+               g <- newStdGen
+               return $ take n (nub [ xs !! i | i <- randomRs (0, length xs - 1) g])
