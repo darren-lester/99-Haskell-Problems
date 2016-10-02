@@ -146,4 +146,13 @@ slice [] _ _ = []
 slice xs i k
  | i <= 0 = error "slice: start index less than 1"
  | otherwise = take (k - i + 1) $ drop (i - 1) xs
- 
+
+-- Problem 19 Rotate a list N places to the left.
+-- Hint: Use the predefined functions length and (++).
+rotate :: [a] -> Int -> [a]
+rotate [] _ = []
+rotate xs n
+ | n == 0 = xs
+ | n > 0 = (drop shift xs) ++ (take shift xs)
+ | n < 0 = (drop (length xs - shift) xs) ++ (take (length xs - shift) xs)
+ where shift = (abs n) `mod` length xs
