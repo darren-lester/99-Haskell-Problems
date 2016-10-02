@@ -126,3 +126,12 @@ dropEvery :: [a] -> Int -> [a]
 dropEvery [] _ = []
 dropEvery xs 1 = []
 dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
+
+-- Problem 17 Split a list into two parts;
+-- the length of the first part is given.
+-- Do not use any predefined predicates.
+split :: [a] -> Int -> ([a], [a])
+split [] _ = ([], [])
+split xs n = foldl (\acc -> \elt -> if length (fst acc) < n
+                                    then (fst acc ++ [elt], snd acc)
+                                    else (fst acc, snd acc ++ [elt])) ([], []) xs
