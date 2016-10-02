@@ -171,4 +171,11 @@ insertAt x [] _ = [x]
 insertAt x xs i
  | i < 1 = error "insertAt: index less than 1"
  | otherwise = take (i - 1) xs ++ [x] ++ drop (i - 1) xs
- 
+
+-- Problem 22 Create a list containing all integers within a given range.
+range :: Int -> Int -> [Int]
+range i j
+ | i > j = error "range: start value is greater than end value"
+ | i == j = [i]
+ | otherwise = i : range (i + 1) j
+
