@@ -189,3 +189,14 @@ randomSelect xs n
  | otherwise = do
                g <- newStdGen
                return $ take n (nub [ xs !! i | i <- randomRs (0, length xs - 1) g])
+
+-- Problem 24 Draw N different random numbers from the set 1..M.
+diffSelect :: Int -> Int -> IO [Int]
+diffSelect 0 _ = do return []
+diffSelect n 1 = do return [1]
+diffSelect n limit
+ | limit < 1 = error "diffSelect: limit less than 1" 
+ | otherwise = 
+   do
+   g <- newStdGen
+   return $ take n (nub [ x | x <- randomRs (1, limit) g])
