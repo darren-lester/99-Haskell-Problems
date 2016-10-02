@@ -156,3 +156,11 @@ rotate xs n
  | n > 0 = (drop shift xs) ++ (take shift xs)
  | n < 0 = (drop (length xs - shift) xs) ++ (take (length xs - shift) xs)
  where shift = (abs n) `mod` length xs
+
+-- Problem 20 Remove the K'th element from a list.
+removeAt :: Int -> [a] -> (a, [a])
+removeAt _ [] = error "removeAt: empty list"
+removeAt i xs
+ | i < 1 = error "removeAt: index less than 1"
+ | i > length xs = error "removeAt: index greater than list length"
+ | otherwise = (xs !! (i - 1), (take (i - 1) xs) ++ drop i xs)
