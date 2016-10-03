@@ -199,6 +199,11 @@ diffSelect n limit
    g <- newStdGen
    return $ take n (nub [ x | x <- randomRs (1, limit) g])
 
+-- Problem 25 Generate a random permutation of the elements of a list.
+rndPermu :: Eq a => [a] -> IO [a]
+rndPermu [] = do return []
+rndPermu xs = randomSelect xs (length xs)
+
 -- Problem 31 Determine whether a given integer number is prime.
 isPrime :: Int -> Bool
 isPrime 0 = False
