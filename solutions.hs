@@ -184,11 +184,9 @@ range i j
 -- Problem 23 Extract a given number of randomly selected elements from a list.
 randomSelect :: Eq a => [a] -> Int -> IO [a]
 randomSelect [] _ = error "randomSelect: empty list"
-randomSelect xs n
- | n == (length xs) = do return xs
- | otherwise = do
-               g <- newStdGen
-               return $ take n (nub [ xs !! i | i <- randomRs (0, length xs - 1) g])
+randomSelect xs n = do
+                    g <- newStdGen
+                    return $ take n (nub [ xs !! i | i <- randomRs (0, length xs - 1) g])
 
 -- Problem 24 Draw N different random numbers from the set 1..M.
 diffSelect :: Int -> Int -> IO [Int]
