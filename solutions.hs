@@ -204,6 +204,13 @@ rndPermu :: Eq a => [a] -> IO [a]
 rndPermu [] = do return []
 rndPermu xs = randomSelect xs (length xs)
 
+-- Problem 26 Generate the combinations of K distinct objects chosen from the
+-- N elements of a list
+combinations :: Int -> [a] -> [[a]]
+combinations 0 _ = [[]]
+combinations _ [] = []
+combinations n (x:xs) = (map (x:) (combinations (n - 1) xs)) ++ combinations n xs
+
 -- Problem 31 Determine whether a given integer number is prime.
 isPrime :: Int -> Bool
 isPrime 0 = False
