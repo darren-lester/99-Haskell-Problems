@@ -211,6 +211,11 @@ combinations 0 _ = [[]]
 combinations _ [] = []
 combinations n (x:xs) = (map (x:) (combinations (n - 1) xs)) ++ combinations n xs
 
+-- Problem 28 Sorting a list of lists according to length of sublists
+lengthsort :: Ord a => [[a]] -> [[a]]
+lengthsort [] = []
+lengthsort xs = sortBy (\x -> \y -> (length x) `compare` (length y)) xs
+
 -- Problem 31 Determine whether a given integer number is prime.
 isPrime :: Int -> Bool
 isPrime 0 = False
