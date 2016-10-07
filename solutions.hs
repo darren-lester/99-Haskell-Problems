@@ -220,3 +220,16 @@ lengthsort xs = sortBy (\x -> \y -> (length x) `compare` (length y)) xs
 isPrime :: Int -> Bool
 isPrime 0 = False
 isPrime x = not $ True `elem` [ x `mod` y == 0 | y <- [2..(x - 1)]]
+
+-- Problem 32 Determine the greatest common divisor of two positive integer
+-- numbers. Use Euclid's algorithm.
+gcd' :: Int -> Int -> Int
+gcd' x y
+ | x == y = x
+ | x > y = gcd' (x - y)  y
+ | x < y = gcd' y x
+
+gcd'' :: Int -> Int -> Int
+gcd'' x y
+ | y == 0 = x
+ | otherwise = gcd'' y (x `mod` y)
