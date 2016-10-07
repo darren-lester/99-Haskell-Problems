@@ -238,3 +238,7 @@ gcd'' x y
 -- Two numbers are coprime if their greatest common divisor equals 1.
 coprime :: Int -> Int -> Bool
 coprime x y = gcd'' x y == 1
+
+-- Problem 34 Calculate Euler's totient function phi(m).
+totient :: Int -> Int
+totient x = length [1| y <- [1..x], coprime x y]
