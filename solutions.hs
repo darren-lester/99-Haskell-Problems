@@ -242,3 +242,11 @@ coprime x y = gcd'' x y == 1
 -- Problem 34 Calculate Euler's totient function phi(m).
 totient :: Int -> Int
 totient x = length [1| y <- [1..x], coprime x y]
+
+-- Problem 35 Determine the prime factors of a given positive integer.
+-- Construct a flat list containing the prime factors in ascending order.
+primeFactors :: Int -> [Int]
+primeFactors 1 = []
+primeFactors x = [y | y <- [2..x], isFactor y x, isPrime y]
+             where isFactor a b = b `mod` a == 0
+             
